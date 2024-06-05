@@ -1,0 +1,33 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def calculate_bmi():
+    try:
+        height = float(entry_height.get())
+        weight = float(entry_weight.get())
+        bmi = weight / (height * height)
+        label_result.config(text=f"BMI: {bmi:.2f}")
+    except ValueError:
+        messagebox.showerror("Invalid input", "Please enter valid numbers for height and weight.")
+
+# Create the main window
+root = tk.Tk()
+root.title("BMI Calculator")
+
+# Create and place the widgets
+tk.Label(root, text="Height (meters):").grid(row=0, column=0, padx=10, pady=10)
+entry_height = tk.Entry(root)
+entry_height.grid(row=0, column=1, padx=10, pady=10)
+
+tk.Label(root, text="Weight (kg):").grid(row=1, column=0, padx=10, pady=10)
+entry_weight = tk.Entry(root)
+entry_weight.grid(row=1, column=1, padx=10, pady=10)
+
+button_calculate = tk.Button(root, text="Calculate BMI", command=calculate_bmi)
+button_calculate.grid(row=2, column=0, columnspan=2, pady=10)
+
+label_result = tk.Label(root, text="BMI: ")
+label_result.grid(row=3, column=0, columnspan=2, pady=10)
+
+# Run the application
+root.mainloop()
